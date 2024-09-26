@@ -9,9 +9,9 @@ setup(
     description='Plugin that provides Huawei Cloud OBS Artifact Store functionality for MLflow',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author='HuaweiCloud',
+    author='AKG103',
     author_email='',
-    url="https://gitee.com/HuaweiCloudDeveloper/huaweicloud-mlflow-plugins",
+    url="https://github.com/adheeshagamage/huaweicloudstorepluginecs.git",
     packages=find_packages(),
     install_requires=[
         'mlflow',
