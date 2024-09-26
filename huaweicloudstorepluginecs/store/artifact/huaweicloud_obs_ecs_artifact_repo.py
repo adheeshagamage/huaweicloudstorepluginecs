@@ -47,22 +47,16 @@ class HuaweiCloudObsEcsArtifactRepository(ArtifactRepository):
 
     @staticmethod
     def get_environs():
-        obs_access_key_id = os.environ.get('MLFLOW_OBS_ACCESS_KEY_ID')
-        obs_secret_access_key = os.environ.get('MLFLOW_OBS_SECRET_ACCESS_KEY')
         obs_region = os.environ.get('MLFLOW_OBS_REGION')
 
-        if not obs_access_key_id:
-            raise Exception('please set Environment variable MLFLOW_OBS_ACCESS_KEY_ID.')
-        if not obs_secret_access_key:
-            raise Exception('please set Environment variable MLFLOW_OBS_SECRET_ACCESS_KEY.')
         if not obs_region:
             raise Exception('please set Environment variable MLFLOW_OBS_REGION.')
-        return obs_access_key_id, obs_secret_access_key, obs_region
+        return obs_region
 
     def _get_obs_client(self):
-        access_key_id, secret_access_key, region = self.get_environs()
+        region = self.get_environs()
         server = f'https://obs.{region}.myhuaweicloud.com'
-        return obs.ObsClient(access_key_id=access_key_id, secret_access_key=secret_access_key, server=server)
+        return obs.ObsClient(server=server,security_provider_policy='ECS')
 
     def _get_bucket_client(self, bucket_name):
         if self.obs_bucket:
