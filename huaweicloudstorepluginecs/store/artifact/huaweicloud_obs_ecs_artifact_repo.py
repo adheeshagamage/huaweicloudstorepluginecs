@@ -55,8 +55,8 @@ class HuaweiCloudObsEcsArtifactRepository(ArtifactRepository):
 
     def _get_obs_client(self):
         region = self.get_environs()
-        #server = f'https://obs.{region}.myhuaweicloud.com'
-        server = f'https://obs.ap-southeast-3.myhuaweicloud.com'
+        server = f'https://obs.{region}.myhuaweicloud.com'
+        #server = f'https://obs.ap-southeast-3.myhuaweicloud.com'
         return obs.ObsClient(server=server,security_provider_policy='ECS')
 
     def _get_bucket_client(self, bucket_name):
